@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+
 public class BallBehaviour : MonoBehaviour // Defines useful behaviours for the ball.
 {
     private Rigidbody2D rb2D;
@@ -10,7 +11,10 @@ public class BallBehaviour : MonoBehaviour // Defines useful behaviours for the 
     private Boolean launched = false;
 
     public int bounceCount;
-    private int MAX_BOUNCES = 10;
+
+    private static float timer = 1f;
+
+    public float slowTimer = timer;
 
     public BallController player; // BallController passes itself to this object.
 
@@ -24,18 +28,34 @@ public class BallBehaviour : MonoBehaviour // Defines useful behaviours for the 
     // Update is called once per frame
     void Update()
     {
-        if (rb2D.velocity.magnitude <= 1.25f && launched == true)
+        Debug.Log(slowTimer);
+        slowTimer -= Time.deltaTime;
+
+        if (rb2D.velocity.magnitude <= 2f && launched == true)
         {
-            player.CreateBall(); // TEMPORARY: immediately creates a new ball when the current one is destroyed. Method found in BallController.cs
-            Destroy(gameObject); // Banishes this ball instance
+            if (slowTimer <= 0)
+            {
+                player.CreateBall(); // TEMPORARY: immediately creates a new ball when the current one is destroyed. Method found in BallController.cs
+                Destroy(gameObject); // Banishes this ball instance
+            }
+        }
+        else
+        {
+            slowTimer = timer;
         }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+
         if (collision.collider.gameObject.tag == "Enemy")
         {
             collision.collider.gameObject.GetComponent<EnemyBehaviour>().health -= 50;
+        }
+        else if (collision.collider.gameObject.name == "Outer Box")
+        {
+            player.CreateBall(); // TEMPORARY: immediately creates a new ball when the current one is destroyed. Method found in BallController.cs
+            Destroy(gameObject); // Banishes this ball instance
         }
     }
 

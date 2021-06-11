@@ -7,6 +7,7 @@ public class BallController : MonoBehaviour // Used by the player to create and 
     private GameObject ball;
     public GameObject ballTemplate; // Defined in the Unity editor: is instanced in order to create new balls
     private BallBehaviour launcher;
+    private GameObject bar;
     public int state = 0; // 0 when the angle is being selected, 1 while the power is being selected, 2 after power is selected, 3 after the ball has been launched
     [Range(0, 359)]
 
@@ -26,6 +27,10 @@ public class BallController : MonoBehaviour // Used by the player to create and 
     {
         ResetValues(); // Technically it's setting some of these for the first time 
         CreateBall();
+
+        bar = GameObject.Find("Power Bar");
+        Debug.Log(bar);
+        bar.SetActive(false);
     }
 
     // Resets important variables prior to creating a new ball
@@ -83,6 +88,15 @@ public class BallController : MonoBehaviour // Used by the player to create and 
         if (state < 2 && Input.GetKeyDown("space")) // select angle and force
         {
             state++;
+
+            if (state == 1) // Hides Bar
+            {
+                bar.SetActive(true);
+            } 
+            else if (state == 2)
+            {
+                bar.SetActive(false);
+            }
         }
 
         if (state == 2 && Input.GetKeyDown("space")) // actually launch the ball
