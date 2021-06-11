@@ -24,7 +24,7 @@ public class BallBehaviour : MonoBehaviour // Defines useful behaviours for the 
     // Update is called once per frame
     void Update()
     {
-        if (rb2D.velocity.magnitude <= 2f && launched == true)
+        if (rb2D.velocity.magnitude <= 1.25f && launched == true)
         {
             player.CreateBall(); // TEMPORARY: immediately creates a new ball when the current one is destroyed. Method found in BallController.cs
             Destroy(gameObject); // Banishes this ball instance
@@ -33,7 +33,10 @@ public class BallBehaviour : MonoBehaviour // Defines useful behaviours for the 
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        
+        if (collision.collider.gameObject.tag == "Enemy")
+        {
+            collision.collider.gameObject.GetComponent<EnemyBehaviour>().health -= 50;
+        }
     }
 
     public async void Launch(Quaternion direction, float force) // Launches the ball. Normally called from BallController.cs by the player game object.
