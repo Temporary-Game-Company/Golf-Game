@@ -8,6 +8,7 @@ public class BallController : MonoBehaviour // Used by the player to create and 
     public GameObject ballTemplate; // Defined in the Unity editor: is instanced in order to create new balls
     private BallBehaviour launcher;
     private GameObject bar;
+    private GameObject ui;
     public int state = 0; // 0 when the angle is being selected, 1 while the power is being selected, 2 after power is selected, 3 after the ball has been launched
     [Range(0, 359)]
 
@@ -25,16 +26,16 @@ public class BallController : MonoBehaviour // Used by the player to create and 
     // Start is called before the first frame update
     void Start()
     {
-        ResetValues(); // Technically it's setting some of these for the first time 
-        CreateBall();
-
         bar = GameObject.Find("Power Bar");
-        Debug.Log(bar);
         bar.SetActive(false);
+
+        ui = GameObject.Find("Canvas");
+        
+        ResetValues(); // Technically it's setting some of these for the first time
     }
 
     // Resets important variables prior to creating a new ball
-    void ResetValues()
+    public void ResetValues()
     {
         state = 0;
         launchAngle = 0f;
@@ -44,6 +45,12 @@ public class BallController : MonoBehaviour // Used by the player to create and 
         MAX_ANGLE = 90f;
         MIN_FORCE = 1f;
         MAX_FORCE = 210f;
+    }
+
+    // Creates a new ball to be launched.
+    public void publicCreateBall()
+    {
+        CreateBall();
     }
 
     // Creates a new ball to be launched.
@@ -88,12 +95,16 @@ public class BallController : MonoBehaviour // Used by the player to create and 
         if (state < 2 && Input.GetKeyDown("space")) // select angle and force
         {
             state++;
-
-            if (state == 1) // Hides Bar
+            if (state == 0)
+            {
+                ui.SetActive(true);
+            }
+            else if (state == 1) // Shows Bar
             {
                 bar.SetActive(true);
+                ui.SetActive(false);
             } 
-            else if (state == 2)
+            else // Hides Bar
             {
                 bar.SetActive(false);
             }

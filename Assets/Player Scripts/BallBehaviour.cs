@@ -34,7 +34,7 @@ public class BallBehaviour : MonoBehaviour // Defines useful behaviours for the 
         {
             if (slowTimer <= 0)
             {
-                player.CreateBall(); // TEMPORARY: immediately creates a new ball when the current one is destroyed. Method found in BallController.cs
+                player.CreateBall();
                 Destroy(gameObject); // Banishes this ball instance
             }
         }
@@ -53,7 +53,7 @@ public class BallBehaviour : MonoBehaviour // Defines useful behaviours for the 
         }
         else if (collision.collider.gameObject.name == "Outer Box")
         {
-            player.CreateBall(); // TEMPORARY: immediately creates a new ball when the current one is destroyed. Method found in BallController.cs
+            player.CreateBall();
             Destroy(gameObject); // Banishes this ball instance
         }
     }

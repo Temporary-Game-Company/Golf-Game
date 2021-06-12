@@ -984,7 +984,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 895461662}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1690095847}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &895461662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2460,11 +2472,11 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -29.610765, y: -5.5019016}
-  - {x: -29.573666, y: 43.395355}
-  - {x: 23.017746, y: 43.55394}
-  - {x: 22.990627, y: 17.641521}
-  - {x: 22.965563, y: -6.311202}
+  - {x: -30.72655, y: -5.5019016}
+  - {x: -31.386814, y: 43.953247}
+  - {x: 24.273003, y: 43.274994}
+  - {x: 24.52483, y: 17.502048}
+  - {x: 24.334864, y: -6.5274076}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
