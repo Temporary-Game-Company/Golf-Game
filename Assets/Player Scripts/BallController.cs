@@ -8,6 +8,8 @@ public class BallController : MonoBehaviour // Used by the player to create and 
     public GameObject ballTemplate; // Defined in the Unity editor: is instanced in order to create new balls
     private BallBehaviour launcher;
     private GameObject bar;
+    private GameObject ui;
+    private GameObject arrow;
     public int state = 0; // 0 when the angle is being selected, 1 while the power is being selected, 2 after power is selected, 3 after the ball has been launched
     [Range(0, 359)]
 
@@ -25,16 +27,17 @@ public class BallController : MonoBehaviour // Used by the player to create and 
     // Start is called before the first frame update
     void Start()
     {
-        ResetValues(); // Technically it's setting some of these for the first time 
-        CreateBall();
-
         bar = GameObject.Find("Power Bar");
-        Debug.Log(bar);
-        bar.SetActive(false);
+
+        ui = GameObject.Find("Canvas");
+
+        arrow = GameObject.Find("Arrow");
+        
+        ResetValues(); // Technically it's setting some of these for the first time
     }
 
     // Resets important variables prior to creating a new ball
-    void ResetValues()
+    public void ResetValues()
     {
         state = 0;
         launchAngle = 0f;
@@ -44,15 +47,18 @@ public class BallController : MonoBehaviour // Used by the player to create and 
         MAX_ANGLE = 90f;
         MIN_FORCE = 1f;
         MAX_FORCE = 210f;
+
+        ui.SetActive(true);
+        arrow.SetActive(false);
+        bar.SetActive(false);
     }
 
     // Creates a new ball to be launched.
-    public GameObject CreateBall()
+    public void CreateBall()
     {
         GameObject newBall = Object.Instantiate(ballTemplate); // Temp variable
         Bind(newBall); // Makes sure the script actually uses the new ball
         ResetValues();
-        return newBall;
     }
 
     // Sets all variables which call on the ball object to use the newly created ball
@@ -88,12 +94,12 @@ public class BallController : MonoBehaviour // Used by the player to create and 
         if (state < 2 && Input.GetKeyDown("space")) // select angle and force
         {
             state++;
-
-            if (state == 1) // Hides Bar
+            if (state == 1) // Power State
             {
+                arrow.SetActive(false);
                 bar.SetActive(true);
             } 
-            else if (state == 2)
+            else // Launch State
             {
                 bar.SetActive(false);
             }
