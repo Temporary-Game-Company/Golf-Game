@@ -28,7 +28,6 @@ public class BallBehaviour : MonoBehaviour // Defines useful behaviours for the 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(slowTimer);
         slowTimer -= Time.deltaTime;
 
         if (rb2D.velocity.magnitude <= 2f && launched == true)
