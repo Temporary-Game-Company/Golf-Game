@@ -34,8 +34,8 @@ public class BallBehaviour : MonoBehaviour // Defines useful behaviours for the 
         {
             if (slowTimer <= 0)
             {
-                player.CreateBall();
                 Destroy(gameObject); // Banishes this ball instance
+                player.ResetValues();
             }
         }
         else
@@ -53,8 +53,8 @@ public class BallBehaviour : MonoBehaviour // Defines useful behaviours for the 
         }
         else if (collision.collider.gameObject.name == "Outer Box")
         {
-            player.CreateBall();
             Destroy(gameObject); // Banishes this ball instance
+            player.ResetValues();
         }
     }
 

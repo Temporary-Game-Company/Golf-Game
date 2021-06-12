@@ -9,6 +9,7 @@ public class BallController : MonoBehaviour // Used by the player to create and 
     private BallBehaviour launcher;
     private GameObject bar;
     private GameObject ui;
+    private GameObject arrow;
     public int state = 0; // 0 when the angle is being selected, 1 while the power is being selected, 2 after power is selected, 3 after the ball has been launched
     [Range(0, 359)]
 
@@ -27,9 +28,10 @@ public class BallController : MonoBehaviour // Used by the player to create and 
     void Start()
     {
         bar = GameObject.Find("Power Bar");
-        bar.SetActive(false);
 
         ui = GameObject.Find("Canvas");
+
+        arrow = GameObject.Find("Arrow");
         
         ResetValues(); // Technically it's setting some of these for the first time
     }
@@ -45,21 +47,18 @@ public class BallController : MonoBehaviour // Used by the player to create and 
         MAX_ANGLE = 90f;
         MIN_FORCE = 1f;
         MAX_FORCE = 210f;
+
+        ui.SetActive(true);
+        arrow.SetActive(false);
+        bar.SetActive(false);
     }
 
     // Creates a new ball to be launched.
-    public void publicCreateBall()
-    {
-        CreateBall();
-    }
-
-    // Creates a new ball to be launched.
-    public GameObject CreateBall()
+    public void CreateBall()
     {
         GameObject newBall = Object.Instantiate(ballTemplate); // Temp variable
         Bind(newBall); // Makes sure the script actually uses the new ball
         ResetValues();
-        return newBall;
     }
 
     // Sets all variables which call on the ball object to use the newly created ball
@@ -95,16 +94,12 @@ public class BallController : MonoBehaviour // Used by the player to create and 
         if (state < 2 && Input.GetKeyDown("space")) // select angle and force
         {
             state++;
-            if (state == 0)
+            if (state == 1) // Power State
             {
-                ui.SetActive(true);
-            }
-            else if (state == 1) // Shows Bar
-            {
+                arrow.SetActive(false);
                 bar.SetActive(true);
-                ui.SetActive(false);
             } 
-            else // Hides Bar
+            else // Launch State
             {
                 bar.SetActive(false);
             }
