@@ -29,7 +29,7 @@ public class BallController : MonoBehaviour // Used by the player to create and 
     {
         bar = GameObject.Find("Power Bar");
 
-        ui = GameObject.Find("Canvas");
+        ui = GameObject.Find("Main Combat");
 
         arrow = GameObject.Find("Arrow");
         
@@ -96,11 +96,11 @@ public class BallController : MonoBehaviour // Used by the player to create and 
             state++;
             if (state == 1) // Power State
             {
-                arrow.SetActive(false);
                 bar.SetActive(true);
             } 
             else // Launch State
             {
+                arrow.SetActive(false);
                 bar.SetActive(false);
             }
         }
