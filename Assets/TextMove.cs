@@ -15,7 +15,7 @@ public class TextMove : MonoBehaviour
     // Update is called once per frame
     public void Down()
     {
-        transform.position = new Vector3(pos.x, pos.y-0.35f, pos.z);
+        transform.position = new Vector3(pos.x, pos.y-10f, pos.z);
     }
 
     public void Up()
