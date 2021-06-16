@@ -16,13 +16,15 @@ public class BallBehaviour : MonoBehaviour // Defines useful behaviours for the 
 
     public float slowTimer = timer;
 
-    public BallController player; // BallController passes itself to this object.
+    public BallController ballController; // BallController passes itself to this object.
 
     // Start is called before the first frame update
     void Start()
     {
         rb2D = gameObject.GetComponent(typeof(Rigidbody2D)) as Rigidbody2D;
         bounceCount = 0;
+
+        ballController = GameObject.Find("Player").GetComponent<BallController>();
     }
 
     // Update is called once per frame
@@ -35,7 +37,7 @@ public class BallBehaviour : MonoBehaviour // Defines useful behaviours for the 
             if (slowTimer <= 0)
             {
                 Destroy(gameObject); // Banishes this ball instance
-                player.ResetValues();
+                ballController.ResetValues();
             }
         }
         else
@@ -54,7 +56,7 @@ public class BallBehaviour : MonoBehaviour // Defines useful behaviours for the 
         else if (collision.collider.gameObject.name == "Outer Box")
         {
             Destroy(gameObject); // Banishes this ball instance
-            player.ResetValues();
+            ballController.ResetValues();
         }
     }
 

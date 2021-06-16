@@ -5,11 +5,13 @@ using UnityEngine;
 public class EnemyBehaviour : MonoBehaviour
 {
     public int health;
-    public float speed;
+    public int speed;
+    public int attack;
 
     private Vector3 originalPosition;
 
     private GameObject player;
+    private PlayerBehaviour playerScript;
 
     private Vector3 target;
     private float approachDistance = 4f;
@@ -23,7 +25,8 @@ public class EnemyBehaviour : MonoBehaviour
         originalPosition = transform.position;
 
         player = GameObject.Find("Player");
-        target = player.transform.position + new Vector3(approachDistance,0,0);
+        playerScript = player.GetComponent<PlayerBehaviour>();
+        target = player.transform.position + new Vector3(approachDistance, 0, 0);
     }
 
     // Update is called once per frame
@@ -49,7 +52,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         approach = true;
 
-        float step = speed * Time.deltaTime;
+        float step = (20 + speed) * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, target, step);
 
         if (Vector3.Distance(transform.position, target) <= 0f)
@@ -57,21 +60,28 @@ public class EnemyBehaviour : MonoBehaviour
             approach = false;
 
             // ATTACK HAPPENS HERE!
+            AttackPlayer();
 
             Return();
         }
     }
 
-    public void Return()
+    private void Return()
     {
         returning = true;
 
-        float step = speed * Time.deltaTime;
+        float step = (20 + speed) * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, originalPosition, step);
 
         if (Vector3.Distance(transform.position, originalPosition) <= 0f)
         {
             returning = false;
         }
+    }
+
+    private void AttackPlayer()
+    {
+        Debug.Log(attack);
+        playerScript.TakeDamage(attack);
     }
 }

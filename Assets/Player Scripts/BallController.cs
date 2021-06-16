@@ -10,10 +10,13 @@ public class BallController : MonoBehaviour // Used by the player to create and 
     private GameObject bar;
     private GameObject ui;
     private GameObject arrow;
+
     public int state = 0; // 0 when the angle is being selected, 1 while the power is being selected, 2 after power is selected, 3 after the ball has been launched
     [Range(0, 359)]
 
     private int incrementDirection = 1; // Used by IncrementAngle and IncrementForce to change direction.
+
+    public bool ballExists;
 
     public float MIN_ANGLE;
     public float MAX_ANGLE;
@@ -51,14 +54,18 @@ public class BallController : MonoBehaviour // Used by the player to create and 
         ui.SetActive(true);
         arrow.SetActive(false);
         bar.SetActive(false);
+
+        ballExists = false;
     }
 
     // Creates a new ball to be launched.
     public void CreateBall()
     {
+        ResetValues();
+
         GameObject newBall = Object.Instantiate(ballTemplate); // Temp variable
         Bind(newBall); // Makes sure the script actually uses the new ball
-        ResetValues();
+        ballExists = true;
     }
 
     // Sets all variables which call on the ball object to use the newly created ball
@@ -67,7 +74,6 @@ public class BallController : MonoBehaviour // Used by the player to create and 
         ball = boundBall;
         // ball.SetActive(true); // this line is redundant
         launcher = ball.GetComponent<BallBehaviour>();
-        launcher.player = this; // feeds this object to the ball
     }
 
     // Fixed update is called at a fixed rate
@@ -91,25 +97,29 @@ public class BallController : MonoBehaviour // Used by the player to create and 
         launchDirection = Quaternion.AngleAxis(launchAngle, Vector3.forward).normalized;
 
         // used to get player input
-        if (state < 2 && Input.GetKeyDown("space")) // select angle and force
+        if (Input.GetKeyDown("space") && ballExists)
         {
-            state++;
-            if (state == 1) // Power State
+            if (state < 2) // select angle and force
             {
-                bar.SetActive(true);
-            } 
-            else // Launch State
+                state++;
+                if (state == 1) // Power State
+                {
+                    bar.SetActive(true);
+                }
+                else // Launch State
+                {
+                    arrow.SetActive(false);
+                    bar.SetActive(false);
+                }
+            }
+
+            if (state == 2) // actually launch the ball
             {
-                arrow.SetActive(false);
-                bar.SetActive(false);
+                launcher.Launch(launchDirection, force); // See BallBehavior.cs for how this works
+                state++; // Enter state 3. In state 3, nothing can happen until CreateBall() is called.
             }
         }
-
-        if (state == 2 && Input.GetKeyDown("space")) // actually launch the ball
-        {
-            launcher.Launch(launchDirection, force); // See BallBehavior.cs for how this works
-            state++; // Enter state 3. In state 3, nothing can happen until CreateBall() is called.
-        }
+        
     }
 
     // Makes the angle bounce back and forth. For the arrow's behaviour see ArrowAngle.cs
