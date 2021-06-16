@@ -32,8 +32,6 @@ public class BallController : MonoBehaviour // Used by the player to create and 
     {
         bar = GameObject.Find("Power Bar");
 
-        ui = GameObject.Find("Main Combat");
-
         arrow = GameObject.Find("Arrow");
         
         ResetValues(); // Technically it's setting some of these for the first time
@@ -51,21 +49,18 @@ public class BallController : MonoBehaviour // Used by the player to create and 
         MIN_FORCE = 1f;
         MAX_FORCE = 210f;
 
-        ui.SetActive(true);
         arrow.SetActive(false);
         bar.SetActive(false);
-
-        ballExists = false;
     }
 
     // Creates a new ball to be launched.
     public void CreateBall()
     {
-        ResetValues();
-
         GameObject newBall = Object.Instantiate(ballTemplate); // Temp variable
         Bind(newBall); // Makes sure the script actually uses the new ball
         ballExists = true;
+
+        arrow.SetActive(true);
     }
 
     // Sets all variables which call on the ball object to use the newly created ball
@@ -116,7 +111,7 @@ public class BallController : MonoBehaviour // Used by the player to create and 
             if (state == 2) // actually launch the ball
             {
                 launcher.Launch(launchDirection, force); // See BallBehavior.cs for how this works
-                state++; // Enter state 3. In state 3, nothing can happen until CreateBall() is called.
+                ballExists = false;
             }
         }
         

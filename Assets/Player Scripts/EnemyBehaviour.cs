@@ -16,8 +16,9 @@ public class EnemyBehaviour : MonoBehaviour
     private Vector3 target;
     private float approachDistance = 4f;
 
-    public static bool approach;
-    public static bool returning;
+    public bool approach;
+    public bool returning;
+    public bool attacking;
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +52,7 @@ public class EnemyBehaviour : MonoBehaviour
     public void Approach()
     {
         approach = true;
+        attacking = true;
 
         float step = (20 + speed) * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, target, step);
@@ -76,6 +78,7 @@ public class EnemyBehaviour : MonoBehaviour
         if (Vector3.Distance(transform.position, originalPosition) <= 0f)
         {
             returning = false;
+            attacking = false;
         }
     }
 

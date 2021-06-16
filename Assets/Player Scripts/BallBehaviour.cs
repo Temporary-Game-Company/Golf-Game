@@ -10,21 +10,23 @@ public class BallBehaviour : MonoBehaviour // Defines useful behaviours for the 
 
     private Boolean launched = false;
 
-    public int bounceCount;
+    //private int bounceCount;
 
     private static float timer = 1f;
 
-    public float slowTimer = timer;
+    private float slowTimer = timer;
 
-    public BallController ballController; // BallController passes itself to this object.
+    private BallController ballController; // BallController passes itself to this object.
+
+    private BattleManager battleManager;
 
     // Start is called before the first frame update
     void Start()
     {
         rb2D = gameObject.GetComponent(typeof(Rigidbody2D)) as Rigidbody2D;
-        bounceCount = 0;
 
         ballController = GameObject.Find("Player").GetComponent<BallController>();
+        battleManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
     }
 
     // Update is called once per frame
@@ -36,8 +38,7 @@ public class BallBehaviour : MonoBehaviour // Defines useful behaviours for the 
         {
             if (slowTimer <= 0)
             {
-                Destroy(gameObject); // Banishes this ball instance
-                ballController.ResetValues();
+                DestroyBall();
             }
         }
         else
@@ -55,8 +56,7 @@ public class BallBehaviour : MonoBehaviour // Defines useful behaviours for the 
         }
         else if (collision.collider.gameObject.name == "Outer Box")
         {
-            Destroy(gameObject); // Banishes this ball instance
-            ballController.ResetValues();
+            DestroyBall();
         }
     }
 
@@ -69,4 +69,12 @@ public class BallBehaviour : MonoBehaviour // Defines useful behaviours for the 
         await System.Threading.Tasks.Task.Delay(1000);
         launched = true;
     }
+
+    public void DestroyBall()
+    {
+        Destroy(gameObject); // Banishes this ball instance
+        ballController.ResetValues();
+        battleManager.ChangeTurn(3);
+    }
+
 }   
