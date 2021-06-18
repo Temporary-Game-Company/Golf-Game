@@ -134,7 +134,7 @@ public class EnemyBehaviour : MonoBehaviour
 
         clock.Stop();
 
-        spriteRenderer.sprite = default;
+        spriteRenderer.sprite = idle;
         playerScript.action = false;
 
         if (clock.Elapsed.TotalMilliseconds >= 2500 && clock.Elapsed.TotalMilliseconds <= 3500)
