@@ -52,7 +52,7 @@ public class BallBehaviour : MonoBehaviour // Defines useful behaviours for the 
 
         if (collision.collider.gameObject.tag == "Enemy")
         {
-            collision.collider.gameObject.GetComponent<EnemyBehaviour>().health -= 50;
+            collision.collider.gameObject.GetComponent<EnemyBehaviour>().TakeDamage(50);
         }
         else if (collision.collider.gameObject.name == "Outer Box")
         {

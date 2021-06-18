@@ -57,8 +57,10 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    public void ChooseAction(string actionChosen)
+    public async void ChooseAction(string actionChosen)
     {
+        await Task.Delay(1);
+
         ChangeTurn(PLAYER_ACTION);
         if (actionChosen == "attack")
         {
@@ -70,26 +72,24 @@ public class BattleManager : MonoBehaviour
     {
         foreach (GameObject enemy in enemies)
         {
-            EnemyBehaviour behaviour = enemy.GetComponent<EnemyBehaviour>();
+            if (enemy)
+            {
+                EnemyBehaviour behaviour = enemy.GetComponent<EnemyBehaviour>();
 
-            behaviour.Approach();
+                behaviour.Approach();
+                await WaitEnemyTurn(behaviour);
+                await Task.Delay(2000);
+            }
         }
-
-        await WaitEnemyTurn();
 
         ChangeTurn(PLAYER_TURN);
     }
 
-    public async Task WaitEnemyTurn()
+    public async Task WaitEnemyTurn(EnemyBehaviour behaviour)
     {
-        foreach (GameObject enemy in enemies)
+        while (behaviour.attacking)
         {
-            EnemyBehaviour behaviour = enemy.GetComponent<EnemyBehaviour>();
-
-            while (behaviour.attacking)
-            {
-                await Task.Delay(25);
-            }
+            await Task.Delay(25);
         }
     }
 }
