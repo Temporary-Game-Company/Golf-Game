@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8884943803981229964}
   - component: {fileID: 8884943803981229955}
   - component: {fileID: 8884943803981229952}
+  - component: {fileID: 515320697163526387}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Untagged
@@ -45,10 +46,12 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -133,5 +136,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 165e195b198b8484b8d0497be341c7ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bounceCount: 0
-  player: {fileID: 0}
+  destroyed: 0
+--- !u!95 &515320697163526387
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8884943803981229967}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8a3f63e6e2099bd4c86f7d029032c634, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

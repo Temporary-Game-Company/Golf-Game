@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Threading.Tasks;
 
 
 public class BallBehaviour : MonoBehaviour // Defines useful behaviours for the ball.
 {
     private Rigidbody2D rb2D;
 
-    private Boolean launched = false;
+    private Boolean launched;
 
     //private int bounceCount;
 
-    private static float timer = 1f;
+    private static float timer = 0.6f;
 
     private float slowTimer = timer;
 
@@ -20,25 +21,35 @@ public class BallBehaviour : MonoBehaviour // Defines useful behaviours for the 
 
     private BattleManager battleManager;
 
+    private Animator animator;
+
+    public bool destroyed;
+
     // Start is called before the first frame update
     void Start()
     {
         rb2D = gameObject.GetComponent(typeof(Rigidbody2D)) as Rigidbody2D;
 
-        ballController = GameObject.Find("Player").GetComponent<BallController>();
-        battleManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
+        ballController = GameObject.Find("BattleManager").GetComponent<BallController>();
+
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (destroyed)
+        {
+            return;
+        }
+        
         slowTimer -= Time.deltaTime;
 
-        if (rb2D.velocity.magnitude <= 2f && launched == true)
+        if (rb2D.velocity.magnitude <= 2f && launched)
         {
-            if (slowTimer <= 0)
+            if (slowTimer <= 0 || rb2D.velocity.magnitude <= 0.02f)
             {
-                DestroyBall();
+                Poof();
             }
         }
         else
@@ -47,7 +58,7 @@ public class BallBehaviour : MonoBehaviour // Defines useful behaviours for the 
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    async void OnCollisionEnter2D(Collision2D collision)
     {
 
         if (collision.collider.gameObject.tag == "Enemy")
@@ -70,11 +81,30 @@ public class BallBehaviour : MonoBehaviour // Defines useful behaviours for the 
         launched = true;
     }
 
-    public void DestroyBall()
+    private async void Poof()
+    {
+        destroyed = true;
+
+        
+        animator.SetBool("Poofing", true);
+
+        await WaitForAnimation();
+        
+        DestroyBall();
+    }
+
+    private void DestroyBall()
     {
         Destroy(gameObject); // Banishes this ball instance
         ballController.ResetValues();
-        battleManager.ChangeTurn(3);
     }
 
+    private async Task WaitForAnimation() // Task which waits for animation to end.
+    {
+        rb2D.drag = 20;
+        while (animator.GetBool("Poofing"))
+        {
+            await Task.Delay(25);
+        }
+    }
 }   

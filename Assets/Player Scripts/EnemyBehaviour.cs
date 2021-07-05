@@ -82,7 +82,6 @@ public class EnemyBehaviour : MonoBehaviour
     {
         clock = Stopwatch.StartNew();
         bool blocked = await awaitAction();
-        UnityEngine.Debug.Log(clock.Elapsed);
 
         if (blocked)
         {

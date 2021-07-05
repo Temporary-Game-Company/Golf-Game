@@ -65,3 +65,31 @@ The following packages were updated:
   com.unity.test-framework from version 1.1.19 to 1.1.24
   com.unity.textmeshpro from version 2.1.1 to 3.0.6
   com.unity.timeline from version 1.2.17 to 1.4.8
+
+=== Tue Jun 29 09:30:10 2021
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.2d.animation from version 5.0.5 to 6.0.3
+  com.unity.2d.pixel-perfect from version 4.0.1 to 5.0.0
+  com.unity.2d.psdimporter from version 4.0.2 to 5.0.3
+  com.unity.2d.spriteshape from version 5.1.2 to 6.0.0
+  com.unity.ide.rider from version 2.0.7 to 3.0.7
+  com.unity.ide.visualstudio from version 2.0.8 to 2.0.9
+  com.unity.timeline from version 1.4.8 to 1.5.5
+The following packages were removed:
+  com.unity.quicksearch@2.0.2
+
+=== Tue Jun 29 12:06:58 2021
+
+Packages were changed.
+Update Mode: mergeDefaultDependencies
+
+The following packages were added:
+  com.unity.ads@3.6.1
+  com.unity.analytics@3.5.3
+  com.unity.ext.nunit@1.0.6
+  com.unity.purchasing@2.2.2
+  com.unity.xr.legacyinputhelpers@2.1.7

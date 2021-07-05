@@ -16,16 +16,24 @@ public class BattleManager : MonoBehaviour
 
     public GameObject[] enemies;
 
-    public BallController ballController; // BallController passes itself to this object.
+    public BallController ballController;
+    public PlayerBehaviour player; // BallController passes itself to this object.
+
+    public GameManager gameManager;
+
+    private bool waitBool;
 
     // Start is called before the first frame update
     void Start()
     {
         turn = 1;
 
-        ui = GameObject.Find("Main Combat");
 
-        ballController = GameObject.Find("Player").GetComponent<BallController>();
+        ui = GameObject.Find("Main Combat");
+        gameManager = transform.parent.GetComponent<GameManager>();
+        ballController = GetComponent<BallController>();
+
+        player = GameObject.Find("Player").GetComponent<PlayerBehaviour>();
 
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
     }
@@ -61,10 +69,19 @@ public class BattleManager : MonoBehaviour
     {
         await Task.Delay(1);
 
+        action = actionChosen;
+
         ChangeTurn(PLAYER_ACTION);
-        if (actionChosen == "attack")
+        switch (action)  // Checks which action was chosen.
         {
-            ballController.CreateBall();
+            case "attack":
+                ballController.CreateBall();
+                await Task.Delay(10);
+
+                await WaitForBall();
+                break;
+            default:
+                break;
         }
     }
 
@@ -72,24 +89,57 @@ public class BattleManager : MonoBehaviour
     {
         foreach (GameObject enemy in enemies)
         {
-            if (enemy)
+            if (enemy != null) // Checks if enemies are alive.
             {
-                EnemyBehaviour behaviour = enemy.GetComponent<EnemyBehaviour>();
-
-                behaviour.Approach();
-                await WaitEnemyTurn(behaviour);
-                await Task.Delay(2000);
+                await EnemyAttack(enemy);
             }
         }
 
         ChangeTurn(PLAYER_TURN);
     }
 
-    public async Task WaitEnemyTurn(EnemyBehaviour behaviour)
+    public void PlayerWins()  // In case of player win.
     {
+        Debug.Log("Winner!");
+
+        player.GainXP(50);
+        
+        gameManager.WinBattle();
+    }
+
+    private async Task WaitForBall() // Task which waits for a variable not to be true. (25 ms delay between checks)
+    {
+        while (ballController.ballExists)
+        {
+            await Task.Delay(25);
+        }
+
+        CheckEnemies();
+
+        ChangeTurn(ENEMY_TURN);
+    }
+
+    private async Task EnemyAttack(GameObject enemy) // Task which waits for a variable not to be true. (25 ms delay between checks)
+    {
+        EnemyBehaviour behaviour = enemy.GetComponent<EnemyBehaviour>();
+
+        behaviour.Approach();
+
         while (behaviour.attacking)
         {
             await Task.Delay(25);
+        }
+
+        await Task.Delay(2000);
+    }
+
+    private void CheckEnemies() // Checks if there are enemies left.
+    {
+        enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        if (enemies.Length == 0)
+        {
+            PlayerWins();
         }
     }
 }

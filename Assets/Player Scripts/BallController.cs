@@ -23,7 +23,7 @@ public class BallController : MonoBehaviour // Used by the player to create and 
     public float launchAngle;
     public Quaternion launchDirection;
     
-    public float MIN_FORCE;
+    private float MIN_FORCE;
     public float MAX_FORCE;
     public float force;
 
@@ -51,14 +51,16 @@ public class BallController : MonoBehaviour // Used by the player to create and 
 
         arrow.SetActive(false);
         bar.SetActive(false);
+
+        ballExists = false;
     }
 
     // Creates a new ball to be launched.
     public void CreateBall()
     {
+        ballExists = true;
         GameObject newBall = Object.Instantiate(ballTemplate); // Temp variable
         Bind(newBall); // Makes sure the script actually uses the new ball
-        ballExists = true;
 
         arrow.SetActive(true);
     }
@@ -67,7 +69,6 @@ public class BallController : MonoBehaviour // Used by the player to create and 
     void Bind(GameObject boundBall)
     {
         ball = boundBall;
-        // ball.SetActive(true); // this line is redundant
         launcher = ball.GetComponent<BallBehaviour>();
     }
 
@@ -111,7 +112,6 @@ public class BallController : MonoBehaviour // Used by the player to create and 
             if (state == 2) // actually launch the ball
             {
                 launcher.Launch(launchDirection, force); // See BallBehavior.cs for how this works
-                ballExists = false;
             }
         }
         

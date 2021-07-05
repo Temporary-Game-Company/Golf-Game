@@ -4,8 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Enemy
   - Terrain
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -15,6 +15,7 @@ TagManager:
   - UI
   - 
   - 
+  - Collectable
   - 
   - 
   - 
@@ -37,8 +38,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - Overlay
   m_SortingLayers:
   - name: Default
     uniqueID: 0

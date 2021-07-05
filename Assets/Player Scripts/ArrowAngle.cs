@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class ArrowAngle : MonoBehaviour // Displays and turns the fancy arrow to indicate aim.
 {
-    private GameObject player;
     private BallController controller;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player");
-        controller = player.GetComponent<BallController>(); // Finds the BallController object which controls the launch angle.
+        controller = GameObject.Find("BattleManager").GetComponent<BallController>();
     }
 
     // Update is called once per frame
