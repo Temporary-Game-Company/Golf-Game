@@ -58,7 +58,7 @@ public class BallBehaviour : MonoBehaviour // Defines useful behaviours for the 
         }
     }
 
-    async void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         bounceCount += 1;
         if (collision.collider.gameObject.name == "Outer Box")
@@ -69,7 +69,8 @@ public class BallBehaviour : MonoBehaviour // Defines useful behaviours for the 
         {
             collision.collider.gameObject.GetComponent<EnemyBehaviour>().TakeDamage(50);
         }
-        else if (bounceCount >= 6)
+        
+        if (bounceCount >= 6)
         {
             Poof();
         }
