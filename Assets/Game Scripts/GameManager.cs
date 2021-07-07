@@ -33,6 +33,14 @@ public class GameManager : MonoBehaviour
             case "Game Over":
                 WaitForInput();
                 break;
+            case "Battle": // Settings for battle.
+                Time.fixedDeltaTime = 0.02f;
+                QualitySettings.antiAliasing = 4;
+                break;
+            case "Overworld": // Settings for Overworld.
+                Time.fixedDeltaTime = 0.01f;
+                QualitySettings.antiAliasing = 0;
+                break;
             default:
                 break;
         }

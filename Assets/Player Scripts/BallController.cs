@@ -109,7 +109,7 @@ public class BallController : MonoBehaviour // Used by the player to create and 
                 }
             }
 
-            if (state == 2) // actually launch the ball
+            if (state == 2 && !launcher.launched) // actually launch the ball
             {
                 launcher.Launch(launchDirection, force); // See BallBehavior.cs for how this works
             }
