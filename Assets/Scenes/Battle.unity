@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 134888825}
   - component: {fileID: 134888824}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: HealthMask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: 157756206}
   - component: {fileID: 157756205}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: ManaMask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
