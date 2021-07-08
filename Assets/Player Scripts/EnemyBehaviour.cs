@@ -120,12 +120,12 @@ public class EnemyBehaviour : MonoBehaviour
     private async Task<bool> awaitAction()
     {
         playerScript.action = false;
-        while (!playerScript.action && clock.Elapsed.TotalMilliseconds <= 2500)
+        while (!playerScript.action && clock.Elapsed.TotalMilliseconds <= 700)
         {
             spriteRenderer.sprite = chargingAttack;
             await Task.Delay(25);
         }
-        while (!playerScript.action && clock.Elapsed.TotalMilliseconds <= 3500)
+        while (!playerScript.action && clock.Elapsed.TotalMilliseconds <= 1300)
         {
             spriteRenderer.sprite = hitting;
             await Task.Delay(25);
@@ -136,13 +136,6 @@ public class EnemyBehaviour : MonoBehaviour
         spriteRenderer.sprite = idle;
         playerScript.action = false;
 
-        if (clock.Elapsed.TotalMilliseconds >= 2500 && clock.Elapsed.TotalMilliseconds <= 3500)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return (clock.Elapsed.TotalMilliseconds >= 700 && clock.Elapsed.TotalMilliseconds <= 1300);
     }
 }

@@ -130,7 +130,7 @@ public class BattleManager : MonoBehaviour
             await Task.Delay(25);
         }
 
-        await Task.Delay(2000);
+        await Task.Delay(500);
     }
 
     private void CheckEnemies() // Checks if there are enemies left.
