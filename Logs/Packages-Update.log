@@ -93,3 +93,11 @@ The following packages were added:
   com.unity.ext.nunit@1.0.6
   com.unity.purchasing@2.2.2
   com.unity.xr.legacyinputhelpers@2.1.7
+
+=== Sun Jul 18 22:52:40 2021
+
+Packages were changed.
+Update Mode: mergeDefaultDependencies
+
+The following packages were added:
+  com.unity.ide.rider@1.1.4

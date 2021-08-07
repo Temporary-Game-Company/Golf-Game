@@ -6,23 +6,23 @@ using UnityEngine.SceneManagement;
 // ONLY STUFF WHICH CAN APPLY TO BOTH BATTLE AND OVERWORLD!
 public class PlayerBehaviour : MonoBehaviour
 {
-    private static int maxHealth = 100;
-    private static int maxMana = 100;
+    public static int maxHealth = 100;
+    public static int maxMana = 100;
     private static int health = 100;
     private static int mana = 100;
     private static int xp;
 
+    private BarMasker healthMask;
+    private BarMasker manaMask;
+
+    private string currentScene;
+
+    [SerializeField] private GameObject combatObject;
+    [SerializeField] private GameObject overworldObject;
+
     public bool action;
 
     public GameManager gameManager;
-
-    public string currentScene;
-
-    public GameObject combatObject;
-    public GameObject overworldObject;
-
-    public BarMasker healthMask;
-    public BarMasker manaMask;
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +36,7 @@ public class PlayerBehaviour : MonoBehaviour
         action = false;
 
         currentScene = SceneManager.GetActiveScene().name; // Saves current scene name.
+        UpdateScene();
         
         healthMask = GameObject.Find("HealthMask").GetComponent<BarMasker>();
         manaMask = GameObject.Find("ManaMask").GetComponent<BarMasker>();
@@ -52,14 +53,16 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void ChangedActiveScene(Scene current, Scene next)
     {
-        Debug.Log("changed player scene");
         currentScene = next.name; // Saves new scene name.
 
-        Debug.Log(xp);
+        UpdateScene();
+    }
 
+    private void UpdateScene()
+    {
         switch (currentScene)
         {
-            case "OverWorld":
+            case "Overworld":
                 combatObject.SetActive(false);
                 overworldObject.SetActive(true);
                 break;
