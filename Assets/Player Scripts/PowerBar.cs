@@ -17,6 +17,6 @@ public class PowerBar : MonoBehaviour // Displays and moves the fancy bar to ind
     // Update is called once per frame
     void Update()
     {
-        gameObject.transform.localPosition = new Vector3(0f, -1.3f + 2.6f * (controller.force/controller.MAX_FORCE), -1f); // Moves the indicator up and down to show the current power.
+        gameObject.transform.localPosition = new Vector3(0f, -1.3f + 2.6f * ((controller.force - controller.MIN_FORCE)/(controller.MAX_FORCE - controller.MIN_FORCE)), -1f); // Moves the indicator up and down to show the current power.
     }
 }

@@ -19,7 +19,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     private Vector3 originalPosition;
 
-    private GameObject player;
+    [SerializeField] private GameObject player;
     private PlayerBehaviour playerScript;
 
     private Vector3 target;
@@ -41,7 +41,6 @@ public class EnemyBehaviour : MonoBehaviour
     {
         originalPosition = transform.position;
 
-        player = GameObject.Find("Player");
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         playerScript = player.GetComponent<PlayerBehaviour>();
         target = player.transform.position + new Vector3(approachDistance, 0, 0);

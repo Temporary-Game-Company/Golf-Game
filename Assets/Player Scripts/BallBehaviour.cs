@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 public class BallBehaviour : MonoBehaviour // Defines useful behaviours for the ball.
 {
+    public double damage = 50d;
     private Rigidbody2D rb2D;
     public Boolean launched;
-    private int bounceCount;
+    public int bounceCount;
     public double comboCount;
 
     private BallController ballController; // BallController passes itself to this object.
@@ -71,7 +72,7 @@ public class BallBehaviour : MonoBehaviour // Defines useful behaviours for the 
 
         // Updates trail opacity and length
         TempColor = trailMat.color;
-        TempColor.a = (float) (0.75*(1 - Math.Pow(1.2, -rb2D.velocity.magnitude + 4)));
+        TempColor.a = (float) (0.7 * (1 - Math.Pow(1.2, -rb2D.velocity.magnitude + 4) + 0.05));
         trailMat.color = TempColor;
     
         tempGradient = new Gradient();
@@ -97,7 +98,7 @@ public class BallBehaviour : MonoBehaviour // Defines useful behaviours for the 
 
         else if (collision.collider.gameObject.tag == "Enemy")
         {
-            collision.collider.gameObject.GetComponent<EnemyBehaviour>().TakeDamage((int) (50d * (Math.Pow(1.42f, comboCount)) ) );
+            collision.collider.gameObject.GetComponent<EnemyBehaviour>().TakeDamage((int) (damage * (Math.Pow(1.42f, comboCount))));
             comboCount += 1;
         }
 

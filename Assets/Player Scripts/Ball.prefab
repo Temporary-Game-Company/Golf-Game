@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 3201685251222125641}
   m_Layer: 0
   m_Name: Ball
-  m_TagString: Untagged
+  m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8884943803981229967}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -21.362, y: -1.6600001, z: 0}
+  m_LocalPosition: {x: -21.5, y: -1.5, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -100,7 +100,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.1017876
+  m_Mass: 0.1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 2
@@ -137,7 +137,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 165e195b198b8484b8d0497be341c7ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 50
   launched: 0
+  bounceCount: 0
   comboCount: 0
   destroyed: 0
 --- !u!95 &515320697163526387
@@ -204,27 +206,27 @@ TrailRenderer:
   m_Time: 0.4
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 1.0246229
+    widthMultiplier: 0.58165026
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.46341133
-        inSlope: 0.34705943
-        outSlope: 0.34705943
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0.23426573
+        value: 0.88150716
+        inSlope: -1.9265865
+        outSlope: -0.05176277
+        tangentMode: 1
+        weightedMode: 2
+        inWeight: 0.33333334
+        outWeight: 0.40282685
       - serializedVersion: 3
         time: 1
         value: 0
-        inSlope: -0.8662523
-        outSlope: -0.8662523
+        inSlope: -1.8225998
+        outSlope: -1.8225998
         tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.17832166
+        weightedMode: 1
+        inWeight: 0.2473498
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
