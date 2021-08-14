@@ -43,12 +43,85 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 28fccac83a2fa2245991bffe45a6cdd1, type: 3}
-  m_Name: 
+  m_Name: Spells
   m_EditorClassIdentifier: 
   m_GroupName: Spells
   m_Items: []
   m_Amounts: 
   m_Modifiers: []
+--- !u!114 &-2789530896683931035
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6132cc3558d117f4bbad4651b2dbdba7, type: 3}
+  m_Name: Club
+  m_EditorClassIdentifier: 
+  m_Id: ba012429-4d26-429d-b159-12711ae26fec
+  m_ItemName: Club
+  m_UseItemNameAsDisplayName: 1
+  m_DisplayName: New Item
+  m_Icon: {fileID: 21300000, guid: fdda12142964ac04ca8ac75e9ba9e191, type: 3}
+  m_Prefab: {fileID: 0}
+  m_Description: 
+  m_Category: {fileID: 4418165342209595061}
+  m_IsSellable: 1
+  m_BuyPrice: 0
+  m_CanBuyBack: 1
+  m_BuyCurrency: {fileID: 7736158847824441651}
+  m_SellPrice: 0
+  m_SellCurrency: {fileID: 7736158847824441651}
+  m_Stack: 1
+  m_MaxStack: 1
+  m_IsDroppable: 0
+  m_DropSound: {fileID: 0}
+  m_OverridePrefab: {fileID: 0}
+  m_IsCraftable: 0
+  m_CraftingDuration: 2
+  m_UseCraftingSkill: 0
+  m_SkillWindow: Skills
+  m_CraftingSkill: {fileID: 0}
+  m_RemoveIngredientsWhenFailed: 0
+  m_MinCraftingSkillValue: 0
+  m_CraftingAnimatorState: Blacksmithy
+  m_CraftingModifier:
+    modifiers: []
+  ingredients: []
+  properties:
+  - name: Ability
+    typeIndex: 0
+    stringValue: Default
+    intValue: 0
+    floatValue: 0
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    boolValue: 0
+    objectReferenceValue: {fileID: 0}
+    vector2Value: {x: 0, y: 0}
+    vector3Value: {x: 0, y: 0, z: 0}
+    show: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
+  m_UseCategoryCooldown: 1
+  m_Cooldown: 1
+  actions:
+  - id: 0
+  m_OverrideEquipPrefab: {fileID: 0}
+  m_Region:
+  - {fileID: 4949995671142416292}
+  references:
+    version: 1
+    00000000:
+      type: {class: InvokeWithVariable, ns: DevionGames, asm: DevionGames.Triggers}
+      data:
+        m_Type: DevionGames.InvokeWithVariable
+        m_Enabled: 1
+        m_Target: 1
+        m_ComponentName: 
+        m_MethodName: 
+        m_VariableArguments: []
 --- !u!114 &-2077966926780401775
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -59,12 +132,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 28fccac83a2fa2245991bffe45a6cdd1, type: 3}
-  m_Name: 
+  m_Name: Consumables
   m_EditorClassIdentifier: 
   m_GroupName: Consumables
-  m_Items: []
-  m_Amounts: 
-  m_Modifiers: []
+  m_Items:
+  - {fileID: 5970739922165000617}
+  m_Amounts: 01000000
+  m_Modifiers:
+  - modifiers: []
 --- !u!114 &-1966830850042483159
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -106,7 +181,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8f5f34ef39fbec438e689ea49ddb023, type: 3}
-  m_Name: 
+  m_Name: Low Club
   m_EditorClassIdentifier: 
   name: Low Club
 --- !u!114 &11400000
@@ -123,6 +198,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   items:
   - {fileID: 5970739922165000617}
+  - {fileID: -2789530896683931035}
   currencies:
   - {fileID: 7736158847824441651}
   - {fileID: 1130366543983242470}
@@ -154,7 +230,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8f5f34ef39fbec438e689ea49ddb023, type: 3}
-  m_Name: 
+  m_Name: High Club
   m_EditorClassIdentifier: 
   name: High Club
 --- !u!114 &102028177022381248
@@ -167,12 +243,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 28fccac83a2fa2245991bffe45a6cdd1, type: 3}
-  m_Name: 
+  m_Name: Equipment
   m_EditorClassIdentifier: 
   m_GroupName: Equipment
-  m_Items: []
-  m_Amounts: 
-  m_Modifiers: []
+  m_Items:
+  - {fileID: -2789530896683931035}
+  m_Amounts: 01000000
+  m_Modifiers:
+  - modifiers: []
 --- !u!114 &1130366543983242470
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -243,7 +321,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8f5f34ef39fbec438e689ea49ddb023, type: 3}
-  m_Name: 
+  m_Name: Armor
   m_EditorClassIdentifier: 
   name: Armor
 --- !u!114 &4949995671142416292
@@ -256,7 +334,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8f5f34ef39fbec438e689ea49ddb023, type: 3}
-  m_Name: 
+  m_Name: Allrounder
   m_EditorClassIdentifier: 
   name: Allrounder
 --- !u!114 &5970739922165000617
