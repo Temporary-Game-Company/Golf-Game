@@ -106,7 +106,7 @@ public class BallBehaviour : MonoBehaviour // Defines useful behaviours for the 
 
     private async Task WaitForAnimation() // Task which waits for animation to end.
     {
-        await Task.Delay(50);
+        await Task.Delay(500);
         rb2D.drag = 15;
         while (animator.GetBool("Poofing"))
         {

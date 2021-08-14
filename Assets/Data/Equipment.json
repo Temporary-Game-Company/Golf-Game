@@ -1,0 +1,18 @@
+{
+    "weapons": [
+        {"id":1, "name":"Old Driver", "type":"Club", "damage":7}
+        {"id":2, "name":"Old Driver +1", "type":"Club", "damage":8}
+        {"id":3, "name":"Old Driver +2", "type":"Club", "damage":9}
+        {"id":4, "name":"Old Driver +3", "type":"Club", "damage":10}
+        {"id":5, "name":"Old Driver +4", "type":"Club", "damage":11}
+    ],
+
+    "armors": [
+        {"id":1, "name":"Old Driver", "type":"Armor", "defense":4}
+        {"id":2, "name":"Old Driver +1", "type":"Armor", "defense":5}
+        {"id":3, "name":"Old Driver +2", "type":"Armor", "defense":6}
+        {"id":4, "name":"Old Driver +3", "type":"Armor", "defense":7}
+        {"id":5, "name":"Old Driver +4", "type":"Armor", "defense":8}
+    ]
+    
+}

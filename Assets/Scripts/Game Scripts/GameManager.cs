@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Overworld");
     }
 
-    public async Task WaitForInput() // Task which waits for an input.
+    public async void WaitForInput() // Task which waits for an input.
     {
         while (!Input.anyKey)
         {

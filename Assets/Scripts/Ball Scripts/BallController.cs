@@ -7,8 +7,10 @@ public class BallController : MonoBehaviour // Used by the player to create and 
     private GameObject ball;
     public GameObject ballTemplate; // Defined in the Unity editor: is instanced in order to create new balls
     private BallBehaviour launcher;
+    [SerializeField]
     private GameObject bar;
     private GameObject ui;
+    [SerializeField]
     private GameObject arrow;
 
     public int state = 0; // 0 when the angle is being selected, 1 while the power is being selected, 2 after power is selected, 3 after the ball has been launched
@@ -30,10 +32,6 @@ public class BallController : MonoBehaviour // Used by the player to create and 
     // Start is called before the first frame update
     void Start()
     {
-        bar = GameObject.Find("Power Bar");
-
-        arrow = GameObject.Find("Arrow");
-        
         ResetValues(); // Technically it's setting some of these for the first time
     }
 
