@@ -46,7 +46,7 @@ public class EnemyBehaviour : MonoBehaviour
         target = player.transform.position + new Vector3(approachDistance, 0, 0);
 
         // debugInfo is used only to send data to the debug overlay
-        debugInfo = GameObject.Find("Debug Overlay").GetComponent<DebugDisplay>();
+        //debugInfo = GameObject.Find("Debug Overlay").GetComponent<DebugDisplay>();
     }
 
     // Update is called once per frame
@@ -63,7 +63,7 @@ public class EnemyBehaviour : MonoBehaviour
         }
 
         // Updates debug info
-        debugInfo.UpdateDebug(gameObject.name + "health", health.ToString());
+        //debugInfo.UpdateDebug(gameObject.name + "health", health.ToString());
     }
 
     public async void Approach()

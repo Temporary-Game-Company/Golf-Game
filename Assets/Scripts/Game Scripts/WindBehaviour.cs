@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WindBehaviour : MonoBehaviour
 {
-    ParticleSystem particleSystem;
+    ParticleSystem windParticleSystem;
     Vector3 boxSize;
     float height;
     float width;
@@ -15,23 +15,23 @@ public class WindBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        particleSystem = gameObject.GetComponent<ParticleSystem>();
+        windParticleSystem = gameObject.GetComponent<ParticleSystem>();
 
         boxSize = gameObject.GetComponent<BoxCollider2D>().size;
         width = boxSize[0];
         height = boxSize[1];
         direction = gameObject.GetComponent<Transform>().rotation * Vector3.right;
         
-        var emitterSettings = particleSystem.main;
+        var emitterSettings = windParticleSystem.main;
         emitterSettings.startSpeed = speed;
         emitterSettings.startLifetime = width/speed;
 
-        var emitterShape = particleSystem.shape;
+        var emitterShape = windParticleSystem.shape;
         emitterShape.position = new Vector3(-width/2, 0f, 0f);
         emitterShape.scale = new Vector3(width, 1f, 1f);
         emitterShape.radius = height / (2 * width);
 
-        var emission = particleSystem.emission;
+        var emission = windParticleSystem.emission;
         emission.rateOverTime = 2 * height;
     }
 

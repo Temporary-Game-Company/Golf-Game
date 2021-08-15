@@ -84,8 +84,8 @@ public class BallBehaviour : MonoBehaviour // Defines useful behaviours for the 
         trail.colorGradient = tempGradient;
 
         // Updates debug info
-        debugInfo.UpdateDebug("Ball Speed", rb2D.velocity.magnitude.ToString());
-        debugInfo.UpdateDebug("Ball Velocity", rb2D.velocity.ToString());
+        //debugInfo.UpdateDebug("Ball Speed", rb2D.velocity.magnitude.ToString());
+        //debugInfo.UpdateDebug("Ball Velocity", rb2D.velocity.ToString());
     }
 
     void OnCollisionEnter2D(Collision2D collision)

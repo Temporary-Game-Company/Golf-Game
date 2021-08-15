@@ -2341,6 +2341,7 @@ MonoBehaviour:
   idle: {fileID: 21300000, guid: dd204a9e32194c6469aa56ccfc22e783, type: 3}
   chargingAttack: {fileID: 21300000, guid: 85b0236b78ddd8a42babd6e204c23360, type: 3}
   hitting: {fileID: 21300000, guid: d219a7987d317374e8c1f3e9fcd6c2c5, type: 3}
+  player: {fileID: 1690095847}
   approach: 0
   returning: 0
   attacking: 0
@@ -2975,7 +2976,7 @@ MonoBehaviour:
   combatObject: {fileID: 1913980291}
   overworldObject: {fileID: 1386598539}
   action: 0
-  gameManager: {fileID: 0}
+  gameManager: {fileID: 1461198878}
 --- !u!1 &1698288223
 GameObject:
   m_ObjectHideFlags: 0
@@ -3817,16 +3818,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbd46da3905469b419d14cf83ccb6f39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ball: {fileID: 0}
   ballTemplate: {fileID: 8884943803981229967, guid: 402bd402d63700a49bdac9046c2704cf,
     type: 3}
+  launcher: {fileID: 0}
+  bar: {fileID: 1698288223}
+  arrow: {fileID: 257622234}
   state: 0
   ballExists: 0
   MIN_ANGLE: 0
   MAX_ANGLE: 90
   launchAngle: 0
   launchDirection: {x: 0, y: 0, z: 0, w: 0}
+  MIN_FORCE: 0
   MAX_FORCE: 200
+  FORCE_INCREMENT: 0
   force: 0
+  simulatedBall: {fileID: 0}
+  projectedPath: {fileID: 0}
 --- !u!1 &2130209759
 GameObject:
   m_ObjectHideFlags: 0

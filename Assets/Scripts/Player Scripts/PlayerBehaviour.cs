@@ -31,8 +31,6 @@ public class PlayerBehaviour : MonoBehaviour
 
         SceneManager.activeSceneChanged += ChangedActiveScene;
 
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-
         action = false;
 
         currentScene = SceneManager.GetActiveScene().name; // Saves current scene name.
