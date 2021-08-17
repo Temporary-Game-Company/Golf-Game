@@ -133,13 +133,13 @@ public class BallController : MonoBehaviour // Used by the player to create and 
                 state++;
                 if (state == 1) // Power State
                 {
-                    arrow.SetActive(false);
                     bar.SetActive(true);
                     StartProjection();
                     return;
                 }
                 else // Launch State
                 {
+                    arrow.SetActive(false);
                     bar.SetActive(false);
                 }
             }

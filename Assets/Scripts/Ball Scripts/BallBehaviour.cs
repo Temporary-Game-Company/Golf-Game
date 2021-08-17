@@ -62,6 +62,7 @@ public class BallBehaviour : MonoBehaviour // Defines useful behaviours for the 
         {
             if (slowTimer <= 0)
             {
+                Debug.Log("Poof");
                 Poof();
             }
         }
