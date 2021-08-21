@@ -44,7 +44,7 @@ public class BallBehaviour : MonoBehaviour // Defines useful behaviours for the 
         trailMat = trail.material;
 
         // debugInfo is used only to send data to the debug overlay
-        debugInfo = GameObject.Find("Debug Overlay").GetComponent<DebugDisplay>();
+        // debugInfo = GameObject.Find("Debug Overlay").GetComponent<DebugDisplay>();
 
     }
 
