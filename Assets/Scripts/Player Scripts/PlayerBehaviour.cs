@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 // ONLY STUFF WHICH CAN APPLY TO BOTH BATTLE AND OVERWORLD!
 public class PlayerBehaviour : MonoBehaviour
 {
-    public static int maxHealth = 100;
+    public static int maxHealth = 500;
     public static int maxMana = 100;
-    private static int health = 100;
+    private static int health = 500;
     private static int mana = 100;
     private static int xp;
 
